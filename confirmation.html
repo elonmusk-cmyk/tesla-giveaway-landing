@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">⚡ TESLA GIVEAWAY</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="claim.html" class="nav-link">Claim</a></li>
+                <li><a href="deliveries.html" class="nav-link">Deliveries</a></li>
+                <li><a href="info.html" class="nav-link">Info</a></li>
+                <li><a href="instructions.html" class="nav-link">Help</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="confirmation-section">
+        <div class="success-message">
+            <div class="success-icon">✓</div>
+            <h1>Order Received!</h1>
+            <p>Your claim has been successfully submitted</p>
+        </div>
+
+        <div class="confirmation-container">
+            <div class="detail-card">
+                <h3>Confirmation Number</h3>
+                <p id="confirmationNumber" class="large-text">#TESLA-2026-00001</p>
+            </div>
+
+            <div class="detail-card">
+                <h3>Your Tesla Vehicle</h3>
+                <div id="vehicleInfo" class="info-grid"></div>
+            </div>
+
+            <div class="detail-card">
+                <h3>Delivery Details</h3>
+                <div id="deliveryInfo" class="info-grid"></div>
+            </div>
+
+            <div class="detail-card">
+                <h3>Payment Confirmed</h3>
+                <div id="paymentInfo" class="info-grid"></div>
+            </div>
+
+            <div class="detail-card">
+                <h3>What's Next?</h3>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>Email Confirmation</h4>
+                        <p>Check your email for details</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>Verification</h4>
+                        <p>We'll verify your info</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>Track Delivery</h4>
+                        <p>Monitor your vehicle</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4>Receive Your Tesla</h4>
+                        <p>Get your new car</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="confirmation-buttons">
+                <button class="btn btn-secondary" onclick="navigateTo('deliveries.html')">Track Your Order</button>
+                <button class="btn btn-primary" onclick="navigateTo('index.html')">Return to Home</button>
+            </div>
+
+            <div class="print-section">
+                <button class="btn btn-outline" onclick="window.print()">Print Confirmation</button>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem; color: #b0b0b0;">
+                <p>Redirecting to home in <span id="redirectCounter">15</span>s...</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Tesla Car Giveaway</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        const VEHICLE_PRICES = {
+            'Tesla Model 3 2025': 42990, 'Tesla Model Y 2025': 45990, 'Tesla Model S 2025': 79990,
+            'Tesla Model X 2025': 84990, 'Tesla Model Y LR 2025': 65990, 'Tesla Cybertruck 2025': 60990,
+            'Tesla Roadster': 200000, 'Tesla Model S Plaid': 109990, 'Tesla Model X Plaid': 104990,
+            'Tesla Model Y Performance': 75990
+        };
+
+        const DELIVERY_INFO = {
+            'standard': { days: '10-14 business days', icon: '📦' },
+            'express': { days: '5-7 business days', icon: '🚚' },
+            'premium': { days: '3-5 business days', icon: '🚀' }
+        };
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const orderData = getFormData();
+            const deliveryMethod = sessionStorage.getItem('deliveryMethod') || 'standard';
+            const paymentData = JSON.parse(sessionStorage.getItem('paymentData'));
+
+            if (!orderData) { navigateTo('claim.html'); return; }
+
+            const confirmationNumber = generateConfirmationNumber();
+            document.getElementById('confirmationNumber').textContent = confirmationNumber;
+
+            document.getElementById('vehicleInfo').innerHTML = `
+                <div class="info-item"><span>Model:</span><strong>${orderData.vehicle}</strong></div>
+                <div class="info-item"><span>Status:</span><strong style="color: #00d950;">✓ Processing</strong></div>
+            `;
+
+            const delivInfo = DELIVERY_INFO[deliveryMethod];
+            document.getElementById('deliveryInfo').innerHTML = `
+                <div class="info-item"><span>Recipient:</span><strong>${orderData.fullName}</strong></div>
+                <div class="info-item"><span>Address:</span><strong>${orderData.address}</strong></div>
+                <div class="info-item"><span>City, State:</span><strong>${orderData.city}, ${orderData.state} ${orderData.zipcode}</strong></div>
+                <div class="info-item"><span>Delivery:</span><strong>${delivInfo.icon} ${delivInfo.days}</strong></div>
+            `;
+
+            if (paymentData.method === 'creditcard') {
+                document.getElementById('paymentInfo').innerHTML = `
+                    <div class="info-item"><span>Method:</span><strong>💳 Credit Card</strong></div>
+                    <div class="info-item"><span>Card:</span><strong>••••${paymentData.cardLast4}</strong></div>
+                    <div class="info-item"><span>Status:</span><strong style="color: #00d950;">✓ Verified</strong></div>
+                `;
+            } else {
+                document.getElementById('paymentInfo').innerHTML = `
+                    <div class="info-item"><span>Method:</span><strong>🎁 Apple Gift Card</strong></div>
+                    <div class="info-item"><span>Status:</span><strong style="color: #00d950;">✓ Verified</strong></div>
+                `;
+            }
+
+            startRedirectCountdown(15);
+        });
+    </script>
+</body>
+</html>

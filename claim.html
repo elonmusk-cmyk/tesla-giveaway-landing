@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Your Tesla</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">⚡ TESLA GIVEAWAY</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="claim.html" class="nav-link active">Claim</a></li>
+                <li><a href="deliveries.html" class="nav-link">Deliveries</a></li>
+                <li><a href="info.html" class="nav-link">Info</a></li>
+                <li><a href="instructions.html" class="nav-link">Help</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Tesla Car Giveaway — Claim Your Car</h1>
+        <p>Choose Your Tesla Car Model and Complete Registration</p>
+    </section>
+
+    <section class="claim-section">
+        <div class="form-container">
+            <form id="claimForm">
+                <h2>Step 1: Choose Your Tesla Car Model</h2>
+                <div class="form-group">
+                    <label for="vehicle">Select Your Dream Tesla *</label>
+                    <select id="vehicle" required>
+                        <option value="">-- Choose a vehicle --</option>
+                        <option value="Tesla Model 3 2025">Tesla Model 3 2025 - $42,990</option>
+                        <option value="Tesla Model Y 2025">Tesla Model Y 2025 - $45,990</option>
+                        <option value="Tesla Model S 2025">Tesla Model S 2025 - $79,990</option>
+                        <option value="Tesla Model X 2025">Tesla Model X 2025 - $84,990</option>
+                        <option value="Tesla Model Y LR 2025">Tesla Model Y LR 2025 - $65,990</option>
+                        <option value="Tesla Cybertruck 2025">Tesla Cybertruck 2025 - $60,990</option>
+                        <option value="Tesla Roadster">Tesla Roadster - $200,000</option>
+                        <option value="Tesla Model S Plaid">Tesla Model S Plaid - $109,990</option>
+                        <option value="Tesla Model X Plaid">Tesla Model X Plaid - $104,990</option>
+                        <option value="Tesla Model Y Performance">Tesla Model Y Performance - $75,990</option>
+                    </select>
+                </div>
+
+                <h2>Step 2: Personal Information</h2>
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" required placeholder="John Doe">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" required placeholder="+1 (555) 000-0000">
+                    </div>
+                </div>
+
+                <h2>Step 3: Delivery Address</h2>
+                <div class="form-group">
+                    <label for="address">Street Address *</label>
+                    <input type="text" id="address" required placeholder="123 Main Street">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input type="text" id="city" required placeholder="Los Angeles">
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State *</label>
+                        <input type="text" id="state" required placeholder="CA">
+                    </div>
+                    <div class="form-group">
+                        <label for="zipcode">ZIP Code *</label>
+                        <input type="text" id="zipcode" required placeholder="90210">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country *</label>
+                    <input type="text" id="country" required placeholder="United States" value="United States">
+                </div>
+
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the terms and conditions *</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large">Continue to Checkout →</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Tesla Car Giveaway</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="info.html">Info</a>
+            <a href="instructions.html">Help</a>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            const selectedVehicle = sessionStorage.getItem('selectedVehicle');
+            if (selectedVehicle) {
+                document.getElementById('vehicle').value = selectedVehicle;
+                sessionStorage.removeItem('selectedVehicle');
+            }
+        });
+
+        document.getElementById('claimForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = {
+                vehicle: document.getElementById('vehicle').value,
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                zipcode: document.getElementById('zipcode').value,
+                country: document.getElementById('country').value
+            };
+            saveFormData(formData);
+            navigateTo('checkout.html');
+        });
+    </script>
+</body>
+</html>

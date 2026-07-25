@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Order Review</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">⚡ TESLA GIVEAWAY</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="claim.html" class="nav-link">Claim</a></li>
+                <li><a href="deliveries.html" class="nav-link">Deliveries</a></li>
+                <li><a href="info.html" class="nav-link">Info</a></li>
+                <li><a href="instructions.html" class="nav-link">Help</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Order Review & Checkout</h1>
+        <p>Confirm your order details before payment</p>
+    </section>
+
+    <section class="checkout-section">
+        <div class="checkout-container">
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <div id="orderSummary" class="summary-content"></div>
+                <div class="summary-total">
+                    <h3>Subtotal: <span id="subtotal">$0.00</span></h3>
+                </div>
+            </div>
+
+            <div class="delivery-options">
+                <h2>Select Delivery Option</h2>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="delivery" value="standard" checked>
+                        <div><span>Standard Delivery</span><p>$299 • 10-14 business days</p></div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="delivery" value="express">
+                        <div><span>Express Delivery</span><p>$349 • 5-7 business days</p></div>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="delivery" value="premium">
+                        <div><span>Premium Delivery</span><p>$399 • 3-5 business days</p></div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="order-details">
+                <h2>Recipient Information</h2>
+                <div id="recipientInfo" class="info-content"></div>
+            </div>
+
+            <div class="order-summary">
+                <h2>Order Total</h2>
+                <div class="summary-content">
+                    <div class="summary-item"><span>Vehicle:</span><strong id="totalVehicle">—</strong></div>
+                    <div class="summary-item"><span>Subtotal:</span><strong id="totalSubtotal">$0.00</strong></div>
+                    <div class="summary-item"><span>Delivery Fee:</span><strong id="totalDeliveryFee">$299.00</strong></div>
+                </div>
+                <div class="summary-total">
+                    <h3>TOTAL: <span id="totalPrice">$0.00</span></h3>
+                </div>
+            </div>
+
+            <div class="checkout-buttons">
+                <button class="btn btn-secondary" onclick="navigateTo('claim.html')">← Back</button>
+                <button class="btn btn-primary btn-large" onclick="proceedToPayment()">Continue to Payment →</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Tesla Car Giveaway</p>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        const VEHICLE_PRICES = {
+            'Tesla Model 3 2025': 42990, 'Tesla Model Y 2025': 45990, 'Tesla Model S 2025': 79990,
+            'Tesla Model X 2025': 84990, 'Tesla Model Y LR 2025': 65990, 'Tesla Cybertruck 2025': 60990,
+            'Tesla Roadster': 200000, 'Tesla Model S Plaid': 109990, 'Tesla Model X Plaid': 104990,
+            'Tesla Model Y Performance': 75990
+        };
+
+        const DELIVERY_FEES = {'standard': 299, 'express': 349, 'premium': 399};
+
+        window.addEventListener('DOMContentLoaded', function() {
+            const orderData = getFormData();
+            if (!orderData) { navigateTo('claim.html'); return; }
+
+            const vehiclePrice = VEHICLE_PRICES[orderData.vehicle] || 50000;
+            const deliveryFee = DELIVERY_FEES['standard'];
+            const total = vehiclePrice + deliveryFee;
+
+            document.getElementById('orderSummary').innerHTML = `<div class="summary-item"><span>Vehicle:</span><strong>${orderData.vehicle}</strong></div>`;
+            document.getElementById('subtotal').textContent = '$' + vehiclePrice.toLocaleString();
+            document.getElementById('totalVehicle').textContent = orderData.vehicle;
+            document.getElementById('totalSubtotal').textContent = '$' + vehiclePrice.toLocaleString();
+            document.getElementById('totalDeliveryFee').textContent = '$' + deliveryFee.toLocaleString();
+            document.getElementById('totalPrice').textContent = '$' + total.toLocaleString();
+
+            document.getElementById('recipientInfo').innerHTML = `
+                <div class="info-item"><span>Name:</span><strong>${orderData.fullName}</strong></div>
+                <div class="info-item"><span>Email:</span><strong>${orderData.email}</strong></div>
+                <div class="info-item"><span>Phone:</span><strong>${orderData.phone}</strong></div>
+                <div class="info-item"><span>Address:</span><strong>${orderData.address}, ${orderData.city}, ${orderData.state} ${orderData.zipcode}</strong></div>
+            `;
+        });
+
+        document.querySelectorAll('input[name="delivery"]').forEach(radio => {
+            radio.addEventListener('change', updateOrderTotal);
+        });
+
+        function updateOrderTotal() {
+            const orderData = getFormData();
+            const vehiclePrice = VEHICLE_PRICES[orderData.vehicle] || 50000;
+            const deliveryFee = DELIVERY_FEES[document.querySelector('input[name="delivery"]:checked').value];
+            const total = vehiclePrice + deliveryFee;
+            document.getElementById('totalDeliveryFee').textContent = '$' + deliveryFee.toLocaleString();
+            document.getElementById('totalPrice').textContent = '$' + total.toLocaleString();
+        }
+
+        function proceedToPayment() {
+            sessionStorage.setItem('deliveryMethod', document.querySelector('input[name="delivery"]:checked').value);
+            navigateTo('payment.html');
+        }
+    </script>
+</body>
+</html>

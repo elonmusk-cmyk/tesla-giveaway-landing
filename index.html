@@ -1,652 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Tesla Car Giveaway — Claim Your Car</title>
-
-<link rel="stylesheet" href="styles.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla Car Giveaway - Win a Brand New Tesla</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
-
 <body>
-
-
-<header class="header">
-
-<h1>Tesla Car Giveaway</h1>
-
-<nav>
-<a href="#giveaway">Giveaway</a>
-<a href="#info">Info</a>
-<a href="#instructions">Instructions</a>
-<a href="#participate">Participate</a>
-<a href="#transactions">Transactions</a>
-</nav>
-
-</header>
-
-
-
-<!-- HERO SECTION -->
-
-<section id="giveaway" class="hero">
-
-<div class="hero-text">
-
-<h2>
-Win a Brand New Tesla Electric Car
-</h2>
-
-<p>
-Explore Tesla vehicles, choose a model, and view delivery information.
-</p>
-
-<button onclick="scrollToModels()">
-View All Models
-</button>
-
-</div>
-
-
-<div class="hero-image">
-
-<img src="images/model3.jpg" alt="Tesla vehicle">
-
-</div>
-
-
-</section>
-
-
-
-
-<!-- TRUST SECTION -->
-
-<section class="trust-section">
-
-<div class="trust-card">
-🔒 SSL Secured
-</div>
-
-<div class="trust-card">
-⚡ Electric Vehicle
-</div>
-
-<div class="trust-card">
-🚗 Tesla Technology
-</div>
-
-<div class="trust-card">
-🌎 Global Information
-</div>
-
-</section>
-
-
-
-
-
-<!-- VEHICLE GALLERY -->
-
-<section id="models" class="vehicle-section">
-
-
-<h2>
-Tesla Vehicle Gallery
-</h2>
-
-
-<p>
-Explore available Tesla models.
-</p>
-
-
-
-<div class="vehicle-grid">
-
-
-
-<div class="vehicle-card">
-
-<img src="images/model3.jpg" alt="Tesla Model 3">
-
-<h3>Tesla Model 3</h3>
-
-<p>2025 Electric Sedan</p>
-
-<p>Delivery Fee: $299</p>
-
-<button onclick="selectVehicle('Tesla Model 3','$299')">
-Select This Vehicle
-</button>
-
-</div>
-
-
-
-
-<div class="vehicle-card">
-
-<img src="images/modely.jpg" alt="Tesla Model Y">
-
-<h3>Tesla Model Y</h3>
-
-<p>2025 Electric SUV</p>
-
-<p>Delivery Fee: $349</p>
-
-<button onclick="selectVehicle('Tesla Model Y','$349')">
-Select This Vehicle
-</button>
-
-</div>
-
-
-
-
-<div class="vehicle-card">
-
-<img src="images/models.jpg" alt="Tesla Model S">
-
-<h3>Tesla Model S</h3>
-
-<p>Luxury Performance Vehicle</p>
-
-<p>Delivery Fee: $399</p>
-
-<button onclick="selectVehicle('Tesla Model S','$399')">
-Select This Vehicle
-</button>
-
-</div>
-
-
-
-
-<div class="vehicle-card">
-
-<img src="images/modelx.jpg" alt="Tesla Model X">
-
-<h3>Tesla Model X</h3>
-
-<p>Premium Electric SUV</p>
-
-<p>Delivery Fee: $449</p>
-
-<button onclick="selectVehicle('Tesla Model X','$449')">
-Select This Vehicle
-</button>
-
-</div>
-
-
-
-
-<div class="vehicle-card">
-
-<img src="images/cybertruck.jpg" alt="Tesla Cybertruck">
-
-<h3>Tesla Cybertruck</h3>
-
-<p>Electric Truck</p>
-
-<p>Delivery Fee: $499</p>
-
-<button onclick="selectVehicle('Tesla Cybertruck','$499')">
-Select This Vehicle
-</button>
-
-</div>
-
-
-</div>
-
-
-</section>
-<!-- CLAIM YOUR CAR SECTION -->
-
-<section id="participate" class="claim-section">
-
-<h2>Claim Your Tesla</h2>
-
-<form id="claimForm">
-
-<label>Select Tesla Model</label>
-
-<select id="selectedCar">
-<option>Tesla Model 3</option>
-<option>Tesla Model Y</option>
-<option>Tesla Model S</option>
-<option>Tesla Model X</option>
-<option>Tesla Cybertruck</option>
-</select>
-
-
-<label>Full Name</label>
-<input type="text" id="name" placeholder="Full Name">
-
-
-<label>Phone Number</label>
-<input type="tel" id="phone" placeholder="Phone Number">
-
-
-<label>Email Address</label>
-<input type="email" id="email" placeholder="Email Address">
-
-
-<label>Street Address</label>
-<input type="text" id="address" placeholder="Street Address">
-
-
-<label>City</label>
-<input type="text" id="city" placeholder="City">
-
-
-<label>State</label>
-<input type="text" id="state" placeholder="State">
-
-
-<label>Country</label>
-<input type="text" id="country" placeholder="Country">
-
-
-<label>ZIP Code</label>
-<input type="text" id="zip" placeholder="ZIP Code">
-
-
-<button type="button" onclick="goToCheckout()">
-Order Now →
-</button>
-
-
-</form>
-
-</section>
-
-
-
-
-<!-- TESLA INFORMATION -->
-
-<section id="info" class="info-section">
-
-<h2>Tesla Motors Information</h2>
-
-<p>
-Electric vehicles focused on technology, innovation, and sustainable transportation.
-</p>
-
-<div class="info-cards">
-
-<div>
-⚡ Electric Performance
-</div>
-
-<div>
-🔋 Battery Technology
-</div>
-
-<div>
-🌱 Sustainable Energy
-</div>
-
-</div>
-
-</section>
-
-
-
-
-<!-- DELIVERY FEED -->
-
-<section class="delivery-feed">
-
-<h2>Live Delivery Updates</h2>
-
-<div class="delivery-card">
-🚗 Vehicle preparation update available
-</div>
-
-<div class="delivery-card">
-⚡ Electric vehicle delivery status update
-</div>
-
-<div class="delivery-card">
-🌎 Worldwide delivery information
-</div>
-
-</section>
-
-
-
-
-<!-- TESTIMONIALS -->
-
-<section class="testimonials">
-
-<h2>
-What Winners Are Saying
-</h2>
-
-
-<div class="testimonial-card">
-
-⭐⭐⭐⭐⭐
-
-<p>
-Customer stories and verified experiences appear here.
-</p>
-
-</div>
-
-
-<div class="testimonial-card">
-
-⭐⭐⭐⭐⭐
-
-<p>
-More customer updates and vehicle experiences.
-</p>
-
-</div>
-
-
-</section>
-<!-- CHECKOUT SECTION -->
-
-<section id="checkout" class="checkout-section">
-
-<h2>Checkout</h2>
-
-<div class="checkout-card">
-
-<h3 id="checkoutCar">
-Tesla Model 3
-</h3>
-
-
-<img id="checkoutImage"
-src="images/model3.jpg"
-alt="Selected Tesla">
-
-
-<h3>Select Delivery Option</h3>
-
-
-<div class="delivery-option">
-Standard Delivery
-<br>
-$299
-<br>
-10–14 business days
-</div>
-
-
-<div class="delivery-option">
-Express Delivery
-<br>
-$349
-<br>
-5–7 business days
-</div>
-
-
-<div class="delivery-option">
-Premium Delivery
-<br>
-$399
-<br>
-3–5 business days
-</div>
-
-
-
-<h3>Select Payment Method</h3>
-
-<div>
-💳 Credit Card
-</div>
-
-<div>
-🍎 Apple Gift Card
-</div>
-
-
-<h3>Upload Payment Proof</h3>
-
-<input type="file" id="paymentProof">
-
-
-<button onclick="confirmOrder()">
-I've Paid — Confirm My Order ✓
-</button>
-
-
-</div>
-
-</section>
-
-
-
-
-
-<!-- CONFIRMATION -->
-
-<section id="confirmation" class="confirmation-section">
-
-<h2>
-Order Received!
-</h2>
-
-
-<p>
-Your order information has been received.
-</p>
-
-
-<div class="confirmation-card">
-
-<p>
-Car:
-<span id="confirmCar">
-Tesla Model 3
-</span>
-</p>
-
-
-<p>
-Customer:
-<span id="confirmName">
-Customer Name
-</span>
-</p>
-
-
-<p>
-Delivery:
-<span id="confirmDelivery">
-Standard Delivery
-</span>
-</p>
-
-
-<p>
-Tracking ID:
-<span id="tracking">
-TESLA-000001
-</span>
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- SOCIAL MEDIA -->
-
-<section class="social-section">
-
-<h2>
-Follow Official Social Media
-</h2>
-
-
-<div class="social-card">
-
-<h3>Tesla Official</h3>
-
-<p>
-Official social media updates.
-</p>
-
-</div>
-
-
-<div class="social-card">
-
-<h3>Tesla Motors</h3>
-
-<p>
-Official community information.
-</p>
-
-</div>
-
-
-</section>
-
-
-
-
-
-<!-- POPUP NOTIFICATION -->
-
-<div id="popup" class="popup">
-
-⭐ New customer update available
-
-</div>
-
-
-
-
-
-<footer>
-
-<p>
-Tesla Car Giveaway — Claim Your Car
-</p>
-
-</footer>
-
-
-
-<script src="script.js"></script>
-
-
-</body>
-
-</html>
-<section id="models" class="vehicle-section">
-
-<h2>Tesla Vehicle Gallery</h2>
-
-<div class="vehicle-grid">
-
-<div class="vehicle-card">
-<img src="model3.jpg" alt="Tesla Model 3">
-<h3>Tesla Model 3 2025</h3>
-<p>Electric Sedan</p>
-<p>Delivery Fee: $299</p>
-<button onclick="selectVehicle('Tesla Model 3 2025','$299')">
-Select This Vehicle
-</button>
-</div>
-
-
-<div class="vehicle-card">
-<img src="modely.jpg" alt="Tesla Model Y">
-<h3>Tesla Model Y 2025</h3>
-<p>Electric SUV</p>
-<p>Delivery Fee: $349</p>
-<button onclick="selectVehicle('Tesla Model Y 2025','$349')">
-Select This Vehicle
-</button>
-</div>
-
-
-<div class="vehicle-card">
-<img src="models.jpg" alt="Tesla Model S">
-<h3>Tesla Model S 2025</h3>
-<p>Luxury Performance</p>
-<p>Delivery Fee: $399</p>
-<button onclick="selectVehicle('Tesla Model S 2025','$399')">
-Select This Vehicle
-</button>
-</div>
-
-
-<div class="vehicle-card">
-<img src="modelx.jpg" alt="Tesla Model X">
-<h3>Tesla Model X 2025</h3>
-<p>Premium SUV</p>
-<p>Delivery Fee: $449</p>
-<button onclick="selectVehicle('Tesla Model X 2025','$449')">
-Select This Vehicle
-</button>
-</div>
-
-
-<div class="vehicle-card">
-<img src="cybertruck.jpg" alt="Tesla Cybertruck">
-<h3>Tesla Cybertruck 2025</h3>
-<p>Electric Truck</p>
-<p>Delivery Fee: $499</p>
-<button onclick="selectVehicle('Tesla Cybertruck 2025','$499')">
-Select This Vehicle
-</button>
-</div>
-
-</div>
-
-<section id="participate">
-
-<h2>Claim Your Tesla</h2>
-
-<form>
-
-<label>Selected Vehicle</label>
-<input id="selectedCar" type="text" readonly>
-
-<label>Full Name</label>
-<input type="text" placeholder="Full Name">
-
-<label>Phone Number</label>
-<input type="tel" placeholder="Phone Number">
-
-<label>Email</label>
-<input type="email" placeholder="Email">
-
-<label>Delivery Address</label>
-<input type="text" placeholder="Delivery Address">
-
-<button type="button" onclick="goToCheckout()">
-Order Now →
-</button>
-
-</form>
-
-</section>
-
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">⚡ TESLA GIVEAWAY</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="claim.html" class="nav-link">Claim</a></li>
+                <li><a href="deliveries.html" class="nav-link">Deliveries</a></li>
+                <li><a href="info.html" class="nav-link">Info</a></li>
+                <li><a href="instructions.html" class="nav-link">Help</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Win a Brand New Tesla Electric Car</h1>
+            <p>Explore premium electric vehicles and register for your vehicle giveaway entry.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary btn-large" onclick="navigateTo('claim.html')">Claim Your Car</button>
+                <button class="btn btn-secondary btn-large" onclick="navigateTo('gallery.html')">View All Models</button>
+            </div>
+        </div>
+        <div class="hero-background"></div>
+    </section>
+
+    <section class="featured-section">
+        <h2>Featured Tesla Models</h2>
+        <div class="featured-grid">
+            <div class="featured-card" onclick="selectVehicleAndNavigate('Tesla Model 3 2025')">
+                <div class="card-badge">BESTSELLER</div>
+                <div class="card-image">🚙</div>
+                <h3>Model 3 2025</h3>
+                <p class="price">$42,990</p>
+                <p>Most affordable Tesla</p>
+                <button class="btn btn-small">Learn More</button>
+            </div>
+            <div class="featured-card" onclick="selectVehicleAndNavigate('Tesla Model Y 2025')">
+                <div class="card-badge">POPULAR</div>
+                <div class="card-image">🚙</div>
+                <h3>Model Y 2025</h3>
+                <p class="price">$45,990</p>
+                <p>Best-selling vehicle</p>
+                <button class="btn btn-small">Learn More</button>
+            </div>
+            <div class="featured-card" onclick="selectVehicleAndNavigate('Tesla Model S 2025')">
+                <div class="card-badge">PREMIUM</div>
+                <div class="card-image">🚗</div>
+                <h3>Model S 2025</h3>
+                <p class="price">$79,990</p>
+                <p>Performance sedan</p>
+                <button class="btn btn-small">Learn More</button>
+            </div>
+            <div class="featured-card" onclick="selectVehicleAndNavigate('Tesla Model X 2025')">
+                <div class="card-badge">LUXURY</div>
+                <div class="card-image">🚐</div>
+                <h3>Model X 2025</h3>
+                <p class="price">$84,990</p>
+                <p>Premium SUV</p>
+                <button class="btn btn-small">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-section">
+        <h2>Why Choose Tesla?</h2>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">⚡</div>
+                <h3>Zero Emissions</h3>
+                <p>100% electric</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🔋</div>
+                <h3>Long Range</h3>
+                <p>600+ miles</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🚀</div>
+                <h3>Performance</h3>
+                <p>Lightning fast</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🤖</div>
+                <h3>Autopilot</h3>
+                <p>Smart driving</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to Win?</h2>
+        <p>Complete your claim today and enter the drawing!</p>
+        <button class="btn btn-primary btn-large" onclick="navigateTo('claim.html')">Start Your Claim</button>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Tesla Car Giveaway</p>
+        <div class="footer-links">
+            <a href="index.html">Giveaway</a>
+            <a href="info.html">Info</a>
+            <a href="instructions.html">Instructions</a>
+            <a href="deliveries.html">Deliveries</a>
+        </div>
+        <div class="badges">
+            <div class="badge">🔒 SSL Secured</div>
+            <div class="badge">✓ Tesla Certified</div>
+            <div class="badge">⚡ EV Official</div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>

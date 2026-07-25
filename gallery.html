@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla Vehicle Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">⚡ TESLA GIVEAWAY</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+                <li><a href="claim.html" class="nav-link">Claim</a></li>
+                <li><a href="deliveries.html" class="nav-link">Deliveries</a></li>
+                <li><a href="info.html" class="nav-link">Info</a></li>
+                <li><a href="instructions.html" class="nav-link">Help</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <h1>Tesla Vehicle Gallery</h1>
+        <p>Choose from 20+ premium Tesla models</p>
+    </section>
+
+    <section class="gallery-section">
+        <div class="gallery-grid">
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model 3 2025')">
+                <div class="card-badge">BESTSELLER</div>
+                <div class="card-image-large">🚙</div>
+                <h3>Model 3 2025</h3>
+                <p class="category">Sedan • 4-Seater</p>
+                <p class="price">$42,990</p>
+                <div class="specs"><span>0-60: 5.8s</span><span>Range: 263 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model Y 2025')">
+                <div class="card-badge">POPULAR</div>
+                <div class="card-image-large">🚙</div>
+                <h3>Model Y 2025</h3>
+                <p class="category">SUV • 5-Seater</p>
+                <p class="price">$45,990</p>
+                <div class="specs"><span>0-60: 5.8s</span><span>Range: 260 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model S 2025')">
+                <div class="card-badge">PREMIUM</div>
+                <div class="card-image-large">🚗</div>
+                <h3>Model S 2025</h3>
+                <p class="category">Sedan • 5-Seater</p>
+                <p class="price">$79,990</p>
+                <div class="specs"><span>0-60: 3.1s</span><span>Range: 405 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model X 2025')">
+                <div class="card-badge">LUXURY</div>
+                <div class="card-image-large">🚐</div>
+                <h3>Model X 2025</h3>
+                <p class="category">SUV • 7-Seater</p>
+                <p class="price">$84,990</p>
+                <div class="specs"><span>0-60: 3.8s</span><span>Range: 348 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model Y LR 2025')">
+                <div class="card-badge">POPULAR</div>
+                <div class="card-image-large">🚙</div>
+                <h3>Model Y LR 2025</h3>
+                <p class="category">SUV • 5-Seater</p>
+                <p class="price">$65,990</p>
+                <div class="specs"><span>0-60: 3.5s</span><span>Range: 330 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Cybertruck 2025')">
+                <div class="card-badge">FUTURISTIC</div>
+                <div class="card-image-large">⚙️</div>
+                <h3>Cybertruck 2025</h3>
+                <p class="category">Truck • 5-Seater</p>
+                <p class="price">$60,990</p>
+                <div class="specs"><span>0-60: 5.0s</span><span>Range: 470 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Roadster')">
+                <div class="card-badge">EXCLUSIVE</div>
+                <div class="card-image-large">🏎️</div>
+                <h3>Roadster</h3>
+                <p class="category">Sports • 4-Seater</p>
+                <p class="price">$200,000</p>
+                <div class="specs"><span>0-60: 1.9s</span><span>Range: 620 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model 3 SR')">
+                <div class="card-badge">BUDGET</div>
+                <div class="card-image-large">🚙</div>
+                <h3>Model 3 SR</h3>
+                <p class="category">Sedan • 4-Seater</p>
+                <p class="price">$42,990</p>
+                <div class="specs"><span>0-60: 5.1s</span><span>Range: 263 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model S Plaid')">
+                <div class="card-badge">FASTEST</div>
+                <div class="card-image-large">🏁</div>
+                <h3>Model S Plaid</h3>
+                <p class="category">Sedan • 5-Seater</p>
+                <p class="price">$109,990</p>
+                <div class="specs"><span>0-60: 1.99s</span><span>Range: 405 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model X Plaid')">
+                <div class="card-badge">PREMIUM</div>
+                <div class="card-image-large">🚐</div>
+                <h3>Model X Plaid</h3>
+                <p class="category">SUV • 7-Seater</p>
+                <p class="price">$104,990</p>
+                <div class="specs"><span>0-60: 2.5s</span><span>Range: 348 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model Y Performance')">
+                <div class="card-badge">PERFORMANCE</div>
+                <div class="card-image-large">🚙</div>
+                <h3>Model Y Performance</h3>
+                <p class="category">SUV • 5-Seater</p>
+                <p class="price">$75,990</p>
+                <div class="specs"><span>0-60: 3.1s</span><span>Range: 303 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Semi')">
+                <div class="card-badge">COMMERCIAL</div>
+                <div class="card-image-large">🚚</div>
+                <h3>Semi</h3>
+                <p class="category">Truck • 2-Seater</p>
+                <p class="price">$150,000</p>
+                <div class="specs"><span>0-60: 5.0s</span><span>Range: 500 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model 3 Performance')">
+                <div class="card-badge">PERFORMANCE</div>
+                <div class="card-image-large">🚗</div>
+                <h3>Model 3 Performance</h3>
+                <p class="category">Sedan • 4-Seater</p>
+                <p class="price">$65,990</p>
+                <div class="specs"><span>0-60: 2.9s</span><span>Range: 303 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model S Long Range')">
+                <div class="card-badge">PREMIUM</div>
+                <div class="card-image-large">🚗</div>
+                <h3>Model S Long Range</h3>
+                <p class="category">Sedan • 5-Seater</p>
+                <p class="price">$79,990</p>
+                <div class="specs"><span>0-60: 3.1s</span><span>Range: 405 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model Y Standard')">
+                <div class="card-badge">POPULAR</div>
+                <div class="card-image-large">🚙</div>
+                <h3>Model Y Standard</h3>
+                <p class="category">SUV • 5-Seater</p>
+                <p class="price">$45,990</p>
+                <div class="specs"><span>0-60: 5.8s</span><span>Range: 260 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model X Long Range')">
+                <div class="card-badge">LUXURY</div>
+                <div class="card-image-large">🚐</div>
+                <h3>Model X Long Range</h3>
+                <p class="category">SUV • 7-Seater</p>
+                <p class="price">$84,990</p>
+                <div class="specs"><span>0-60: 3.8s</span><span>Range: 348 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model 3 LR Dual Motor')">
+                <div class="card-badge">POPULAR</div>
+                <div class="card-image-large">🚙</div>
+                <h3>Model 3 LR Dual Motor</h3>
+                <p class="category">Sedan • 4-Seater</p>
+                <p class="price">$65,990</p>
+                <div class="specs"><span>0-60: 2.5s</span><span>Range: 358 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model Y AWD')">
+                <div class="card-badge">POPULAR</div>
+                <div class="card-image-large">🚙</div>
+                <h3>Model Y AWD</h3>
+                <p class="category">SUV • 5-Seater</p>
+                <p class="price">$65,990</p>
+                <div class="specs"><span>0-60: 3.5s</span><span>Range: 330 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model S AWD')">
+                <div class="card-badge">PREMIUM</div>
+                <div class="card-image-large">🚗</div>
+                <h3>Model S AWD</h3>
+                <p class="category">Sedan • 5-Seater</p>
+                <p class="price">$99,990</p>
+                <div class="specs"><span>0-60: 2.3s</span><span>Range: 430 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Model X Twin Motor')">
+                <div class="card-badge">LUXURY</div>
+                <div class="card-image-large">🚐</div>
+                <h3>Model X Twin Motor</h3>
+                <p class="category">SUV • 7-Seater</p>
+                <p class="price">$104,990</p>
+                <div class="specs"><span>0-60: 2.5s</span><span>Range: 368 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+            <div class="gallery-card" onclick="selectVehicleAndNavigate('Tesla Cybertruck Foundation')">
+                <div class="card-badge">FUTURISTIC</div>
+                <div class="card-image-large">⚙️</div>
+                <h3>Cybertruck Foundation</h3>
+                <p class="category">Truck • 5-Seater</p>
+                <p class="price">$60,990</p>
+                <div class="specs"><span>0-60: 5.0s</span><span>Range: 340 mi</span></div>
+                <button class="btn btn-small">Claim Now</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="back-section">
+        <button class="btn btn-secondary" onclick="navigateTo('index.html')">← Back to Home</button>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Tesla Car Giveaway</p>
+        <div class="footer-links">
+            <a href="index.html">Giveaway</a>
+            <a href="info.html">Info</a>
+            <a href="instructions.html">Instructions</a>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
