@@ -1,58 +1,132 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     // View All Models button
-    const viewButton = document.querySelector(".hero button");
+    window.scrollToModels = function () {
+        const models = document.getElementById("models");
 
-    if (viewButton) {
-        viewButton.addEventListener("click", function () {
-            document.getElementById("models").scrollIntoView({
+        if (models) {
+            models.scrollIntoView({
                 behavior: "smooth"
             });
+        }
+    };
+
+
+    // Select Tesla vehicle
+    window.selectVehicle = function (car, fee) {
+
+        localStorage.setItem("selectedTesla", car);
+        localStorage.setItem("deliveryFee", fee);
+
+        const checkoutCar = document.getElementById("checkoutCar");
+
+        if (checkoutCar) {
+            checkoutCar.textContent = car;
+        }
+
+        alert(
+            car + " selected\nDelivery Fee: " + fee
+        );
+
+    };
+
+
+    // Checkout button
+    window.goToCheckout = function () {
+
+        const name = document.getElementById("name");
+
+        if (name && name.value === "") {
+
+            alert("Please enter your information");
+
+            return;
+
+        }
+
+
+        document.getElementById("checkout")
+        .scrollIntoView({
+            behavior:"smooth"
         });
-    }
+
+    };
 
 
-    // Select vehicle buttons
-    const carButtons = document.querySelectorAll(".car button");
 
-    carButtons.forEach(function(button) {
+    // Confirm order
+    window.confirmOrder = function () {
 
-        button.addEventListener("click", function() {
+        const car =
+        localStorage.getItem("selectedTesla")
+        || "Tesla Model 3";
 
-            const carCard = this.parentElement;
-            const carName = carCard.querySelector("h3").textContent;
-            const fee = carCard.querySelectorAll("p")[1].textContent;
 
-            localStorage.setItem("selectedTesla", carName);
-            localStorage.setItem("deliveryFee", fee);
+        const confirmCar =
+        document.getElementById("confirmCar");
 
-            alert(
-                carName + " selected!\n" + fee
-            );
 
+        if(confirmCar){
+            confirmCar.textContent = car;
+        }
+
+
+        document.getElementById("confirmation")
+        .scrollIntoView({
+            behavior:"smooth"
         });
 
-    });
+
+    };
+
 
 
     // Testimonial popup
+
+    const popup = document.getElementById("popup");
+
+
     const messages = [
+
         "⭐ New customer update available",
-        "🚗 Vehicle delivery update added",
-        "⚡ Electric vehicle community update",
-        "🌎 New Tesla information available"
+
+        "🚗 Vehicle information updated",
+
+        "⚡ Electric vehicle news available",
+
+        "🌎 New community update"
+
     ];
 
-    let count = 0;
+
+    let index = 0;
+
 
     setInterval(function(){
 
-        console.log(messages[count]);
+        if(popup){
 
-        count++;
+            popup.textContent = messages[index];
 
-        if(count >= messages.length){
-            count = 0;
+            popup.style.display = "block";
+
+
+            setTimeout(function(){
+
+                popup.style.display = "none";
+
+            },4000);
+
+
+            index++;
+
+
+            if(index >= messages.length){
+
+                index = 0;
+
+            }
+
         }
 
     },5000);
