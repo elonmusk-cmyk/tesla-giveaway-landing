@@ -191,3 +191,8 @@ footer {
 }
 
 }
+#participate,
+#checkout,
+#confirmation {
+    display: none;
+}
